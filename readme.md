@@ -43,43 +43,43 @@ This project aims to build a complete hardware & software system to:
 
 2. Fixed Ground Module (Hardware)
 
- - ESP32
+    - ESP32
 
- - nRF24L01 wireless module (for now, waiting for Lora module to arrive)
+    - nRF24L01 wireless module (for now, waiting for Lora module to arrive)
 
- - Wi-Fi internet connection (via router / provider)
+    - Wi-Fi internet connection (via router / provider)
 
- - Forwards raw telemetry to VPS via HTTP/MQTT/Websockets
+    - Forwards raw telemetry to VPS via HTTP/MQTT/Websockets
 
 3. VPS / Server (Networking)
 
- - Receives telemetry from the fixed module
+    - Receives telemetry from the fixed module
 
- - Communicates with Spring Boot backend
+    - Communicates with Spring Boot backend
 
 4. Backend (Software – Spring Boot)
 
- - Exposes REST API
+    - Exposes REST API
 
- - Stores data in database
+    - Stores data in database
 
- - Provides endpoints for:
+    - Provides endpoints for:
 
-  - Submitting telemetry
+        - Submitting telemetry
 
-  - Querying drone history
+        - Querying drone history
 
-  - Sending commands back to modules
+        - Sending commands back to modules
 
 5. Frontend (Software – Angular)
 
- - Dashboard UI
+    - Dashboard UI
 
- - Displays live telemetry
+    - Displays live telemetry
 
- - Graphs & charts
+    - Graphs & charts
 
- - Interface for sending commands (future control system)
+    - Interface for sending commands (future control system)
 
 ---
 
