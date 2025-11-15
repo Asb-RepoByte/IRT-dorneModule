@@ -85,7 +85,7 @@ This project aims to build a complete hardware & software system to:
 
 ## Task Breakdown
 
-#### HARDWARE TASKS
+> HARDWARE TASKS
 
 1. Drone Module (ESP32)
 
@@ -119,8 +119,9 @@ This project aims to build a complete hardware & software system to:
 
     - Future: Receive commands from backend → LoRa → drone
 
+---
 
-#### NETWORKING TASKS
+> NETWORKING TASKS
 
 1. VPS
 
@@ -134,7 +135,9 @@ This project aims to build a complete hardware & software system to:
 
     - Security rules & firewall
 
-#### BACKEND TASKS (SPRING BOOT)
+---
+
+> BACKEND TASKS (SPRING BOOT)
 
 1. Spring boot
 
@@ -152,7 +155,9 @@ This project aims to build a complete hardware & software system to:
 
     - Command endpoint (future control system)
 
-#### FRONTEND TASKS (ANGULAR)
+---
+
+> FRONTEND TASKS (ANGULAR)
 
 1. Angular
 
@@ -168,7 +173,9 @@ This project aims to build a complete hardware & software system to:
 
     - Commands panel (future control)
 
-### TESTING TASKS
+---
+
+> TESTING TASKS
 
 1. Test
 
@@ -208,9 +215,9 @@ This project aims to build a complete hardware & software system to:
 ```
 
 ---
-## Contribution Workflow
+## How to Contribute
 
-How to contribute, Every team member must follow:
+Every team member must follow:
 
 1. Fork the repository
 
