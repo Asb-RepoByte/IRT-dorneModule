@@ -85,118 +85,127 @@ This project aims to build a complete hardware & software system to:
 
 ## Task Breakdown
 
-### HARDWARE TASKS
+#### HARDWARE TASKS
 
 1. Drone Module (ESP32)
 
- ESP32 firmware base setup
+    ESP32 firmware base setup
 
- - SPI communication with nRF24L01
+    - SPI communication with nRF24L01
 
- - SPI communication with LoRA
+    - SPI communication with LoRA
 
- - Implement LoRa packet structure
+    - Implement LoRa packet structure
 
- - Creating an API to enable communication with LoRA/nRF24L01 interchangibaly
+    - Creating an API to enable communication with LoRA/nRF24L01 interchangibaly
 
- - Integrate sensor drivers (IMU, GPS future, etc.)
+    - Integrate sensor drivers (IMU, GPS future, etc.)
 
- - Power optimization & sleep modes
+    - Power optimization & sleep modes
 
- - Error handling, reconnection logic
+    - Error handling, reconnection logic
 
 2. Fixed Module (ESP32 + WiFi)
 
- - ESP32 firmware base setup
+    - ESP32 firmware base setup
 
- - Wireless LoRa receiver logic
+    - Wireless LoRa receiver logic
 
- - WiFi connection manager
+    - WiFi connection manager
 
- - Data forwarder: send packets to VPS
+    - Data forwarder: send packets to VPS
 
- - Local buffering when no internet
+    - Local buffering when no internet
 
-  - Future: Receive commands from backend → LoRa → drone
+    - Future: Receive commands from backend → LoRa → drone
 
 
-### NETWORKING TASKS
+#### NETWORKING TASKS
 
-3. VPS
+1. VPS
 
- - Create VPS environment
+    - Create VPS environment
 
- - Reverse proxy (Nginx / Traefik)
+    - Reverse proxy (Nginx / Traefik)
 
- - HTTPS setup (Let's Encrypt)
+    - HTTPS setup (Let's Encrypt)
 
- - Expose endpoint to receive module data
+    - Expose endpoint to receive module data
 
-  - Security rules & firewall
+    - Security rules & firewall
 
-### BACKEND TASKS (SPRING BOOT)
+#### BACKEND TASKS (SPRING BOOT)
 
-- Initial project scaffold
+1. Spring boot
 
-- Telemetry ingestion API (POST /telemetry)
+    - Initial project scaffold
 
-- Database design (PostgreSQL)
+    - Telemetry ingestion API (POST /telemetry)
 
-- Drone history queries
+    - Database design (PostgreSQL)
 
-- Authentication (API keys or JWT)
+    - Drone history queries
 
-- Websocket for real-time updates
+    - Authentication (API keys or JWT)
 
-    Command endpoint (future control system)
+    - Websocket for real-time updates
 
-### FRONTEND TASKS (ANGULAR)
+    - Command endpoint (future control system)
 
-- Angular project setup
+#### FRONTEND TASKS (ANGULAR)
 
-- Real-time telemetry dashboard
+1. Angular
 
-- Graphs (charts)
+    - Angular project setup
 
-- Map view (future GPS)
+    - Real-time telemetry dashboard
 
-- Device management UI
+    - Graphs (charts)
 
-    Commands panel (future control)
+    - Map view (future GPS)
+
+    - Device management UI
+
+    - Commands panel (future control)
 
 ### TESTING TASKS
 
-- Unit tests for ESP32 modules
+1. Test
 
-- Backend unit tests
+    - Unit tests for ESP32 modules
 
-- Integration tests (backend + frontend)
+    - Backend unit tests
 
-- End-to-end test environment
+    - Integration tests (backend + frontend)
 
-    Field tests with real hardware
+    - End-to-end test environment
+
+    - Field tests with real hardware
 
 ---
-📁 Proposed Repository Structure
+## 📁 Proposed Repository Structure
 
-/project-root<\br>
-├── firmware/<\br>
-│   ├── drone-module/<\br>
-│   ├── fixed-module/<\br>
-│   └── shared/<\br>
-│<\br>
-├── backend/<\br>
-│   ├── src/<\br>
-│   └── README.md<\br>
-│<\br>
-├── frontend/<\br>
-│   └── src/<\br>
-│<\br>
-├── docs/<\br>
-│   ├── architecture/<\br>
-│   └── communication-protocol.md<\br>
-│<\br>
-└── README.md<\br>
+'''
+/project-root
+├── firmware/
+│   ├── drone-module/
+│   ├── fixed-module/
+│   └── shared/
+│
+├── backend/
+│   ├── src/
+│   └── README.md
+│
+├── frontend/
+│   └── src/
+│
+├── docs/
+│   ├── architecture/
+│   └── communication-protocol.md
+
+└── README.md
+
+'''
 
 ---
 ## Contribution Workflow
@@ -205,52 +214,52 @@ How to contribute, Every team member must follow:
 
 1. Fork the repository
 
-Each developer works on their own copy.
+    Each developer works on their own copy.
 
 2. Create a new branch for the task
 
-`git checkout -b feature/task-name`
+    `git checkout -b feature/task-name`
 
 3. Implement the task
 
-Follow coding guidelines in the /docs folder.
+    Follow coding guidelines in the /docs folder.
 
 4. Push and create a Pull Request
 
-PR must include:
+    PR must include:
 
     Description of what was done
     Screenshots/logs when applicable
 
 5. Code review
 
-At least one approval before merging.
+    At least one approval before merging.
 
 ---
 
 ## Coding Standards
 
-Firmware (ESP32)
+- Firmware (ESP32)
 
-    Use PlatformIO or ESP-IDF
+    - Use PlatformIO or ESP-IDF
 
-    No blocking waits where possible
+    - No blocking waits where possible
 
-    Modular components for each sensor
+    - Modular components for each sensor
 
-    LoRa packet structure documented in /docs/protocol.md
+    - LoRa packet structure documented in /docs/protocol.md
 
-Backend (Spring Boot)
+- Backend (Spring Boot)
 
-    REST naming conventions
+    - REST naming conventions
 
-    DTOs & Services separated cleanly
+    - DTOs & Services separated cleanly
 
-    JPA for data models
+    - JPA for data models
 
-Frontend (Angular)
+- Frontend (Angular)
 
-    Use services for API calls
+    - Use services for API calls
 
-    Use RxJS for streams
+    - Use RxJS for streams
 
