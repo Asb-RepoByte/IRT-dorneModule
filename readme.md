@@ -185,7 +185,7 @@ This project aims to build a complete hardware & software system to:
 ---
 ## 📁 Proposed Repository Structure
 
-'''
+```
 /project-root
 ├── firmware/
 │   ├── drone-module/
@@ -205,7 +205,7 @@ This project aims to build a complete hardware & software system to:
 
 └── README.md
 
-'''
+```
 
 ---
 ## Contribution Workflow
