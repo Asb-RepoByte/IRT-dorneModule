@@ -1,26 +1,34 @@
-Drone Telemetry & Control System
+IRT Drone Telemetry & Control System (IRT-DTC)
 
 A modular platform for collecting drone data, transmitting it over LoRa, forwarding online, and visualizing it.
-📌 Project Overview
+This system combines embedded development, wireless communication, networking, and full-stack software.
+
+## Project Overview
 
 This project aims to build a complete hardware & software system to:
 
-    Collect sensor data on a drone using an ESP32
+> Collect sensor data on a drone using an ESP32 and Sensors
 
-    Transmit data wirelessly via LoRa (nRF24L01) to a fixed ground module
+> Transmit data wirelessly via LoRa to a fixed ground module
 
-    Forward data from the fixed module to the internet via Wi-Fi
+> Forward data from the fixed module to the internet via Wi-Fi
 
-    Send the data to a VPS-based backend server
+> Send the data to a VPS-based backend server
 
-    Store and process data in a backend application (Spring Boot)
+> process data in a backend application (Spring Boot)
 
-    Visualize data in real time using a frontend (Angular)
+> Store data in a DataBase PostgreSQL/MySQL
 
-    (Future) Send commands back to the drone — potentially even predefined flight trajectory control.
+> Visualize data in real time using a frontend (Angular)
 
-The system combines embedded development, wireless communication, networking, and full-stack software.
-🗂️ Architecture Overview
+> Send commands back to the drone — potentially even predefined flight trajectory control (Future plan).
+
+---
+
+## Architecture Overview
+
+![Architecture Diagram]("./docs/images/drone-mvp-schema02")
+
 1. Drone Module (Hardware)
 
     ESP32
@@ -37,7 +45,7 @@ The system combines embedded development, wireless communication, networking, an
 
     ESP32
 
-    nRF24L01 wireless module
+    nRF24L01 wireless module (for now, waiting for Lora module to arrive)
 
     Wi-Fi internet connection (via router / provider)
 
@@ -73,93 +81,102 @@ The system combines embedded development, wireless communication, networking, an
 
     Interface for sending commands (future control system)
 
-✅ Task Breakdown
+---
 
-You can post these as GitHub issues — each team member picks a task.
-🔧 HARDWARE TASKS
+## Task Breakdown
+
+### HARDWARE TASKS
+
 1. Drone Module (ESP32)
 
 ESP32 firmware base setup
 
-SPI communication with nRF24L01
+- SPI communication with nRF24L01
 
-Implement LoRa packet structure
+- SPI communication with LoRA
 
-Integrate sensor drivers (IMU, GPS future, etc.)
+- Implement LoRa packet structure
 
-Power optimization & sleep modes
+- Creating an API to enable communication with LoRA/nRF24L01 interchangibaly
 
-    Error handling, reconnection logic
+- Integrate sensor drivers (IMU, GPS future, etc.)
+
+- Power optimization & sleep modes
+
+- Error handling, reconnection logic
 
 2. Fixed Module (ESP32 + WiFi)
 
-ESP32 firmware base setup
+- ESP32 firmware base setup
 
-Wireless LoRa receiver logic
+- Wireless LoRa receiver logic
 
-WiFi connection manager
+- WiFi connection manager
 
-Data forwarder: send packets to VPS
+- Data forwarder: send packets to VPS
 
-Local buffering when no internet
+- Local buffering when no internet
 
     Future: Receive commands from backend → LoRa → drone
 
-🌐 NETWORKING TASKS
+
+### NETWORKING TASKS
+
 3. VPS
 
-Create VPS environment
+> Create VPS environment
 
-Reverse proxy (Nginx / Traefik)
+> Reverse proxy (Nginx / Traefik)
 
-HTTPS setup (Let's Encrypt)
+> HTTPS setup (Let's Encrypt)
 
-Expose endpoint to receive module data
+> Expose endpoint to receive module data
 
     Security rules & firewall
 
-🖥️ BACKEND TASKS (SPRING BOOT)
+### BACKEND TASKS (SPRING BOOT)
 
-Initial project scaffold
+> Initial project scaffold
 
-Telemetry ingestion API (POST /telemetry)
+> Telemetry ingestion API (POST /telemetry)
 
-Database design (PostgreSQL)
+> Database design (PostgreSQL)
 
-Drone history queries
+> Drone history queries
 
-Authentication (API keys or JWT)
+> Authentication (API keys or JWT)
 
-Websocket for real-time updates
+> Websocket for real-time updates
 
     Command endpoint (future control system)
 
-💻 FRONTEND TASKS (ANGULAR)
+### FRONTEND TASKS (ANGULAR)
 
-Angular project setup
+> Angular project setup
 
-Real-time telemetry dashboard
+> Real-time telemetry dashboard
 
-Graphs (charts)
+> Graphs (charts)
 
-Map view (future GPS)
+> Map view (future GPS)
 
-Device management UI
+> Device management UI
 
     Commands panel (future control)
 
-🧪 TESTING TASKS
+### TESTING TASKS
 
-Unit tests for ESP32 modules
+> Unit tests for ESP32 modules
 
-Backend unit tests
+> Backend unit tests
 
-Integration tests (backend + frontend)
+> Integration tests (backend + frontend)
 
-End-to-end test environment
+> End-to-end test environment
 
     Field tests with real hardware
 
+---
 📁 Proposed Repository Structure
 
 /project-root
@@ -181,15 +198,17 @@ End-to-end test environment
 │
 └── README.md
 
-🤝 Contribution Workflow
+---
+## Contribution Workflow
 
-Every team member must follow:
+How to contribute, Every team member must follow:
+
 1. Fork the repository
 
 Each developer works on their own copy.
 2. Create a new branch for the task
 
-git checkout -b feature/task-name
+`git checkout -b feature/task-name`
 
 3. Implement the task
 
@@ -199,9 +218,6 @@ Follow coding guidelines in the /docs folder.
 PR must include:
 
     Description of what was done
-
-    Linked issue number
-
     Screenshots/logs when applicable
 
 5. Code review
