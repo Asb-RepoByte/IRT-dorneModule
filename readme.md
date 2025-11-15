@@ -7,21 +7,21 @@ This system combines embedded development, wireless communication, networking, a
 
 This project aims to build a complete hardware & software system to:
 
-> Collect sensor data on a drone using an ESP32 and Sensors
+- Collect sensor data on a drone using an ESP32 and Sensors
 
-> Transmit data wirelessly via LoRa to a fixed ground module
+- Transmit data wirelessly via LoRa to a fixed ground module
 
-> Forward data from the fixed module to the internet via Wi-Fi
+- Forward data from the fixed module to the internet via Wi-Fi
 
-> Send the data to a VPS-based backend server
+- Send the data to a VPS-based backend server
 
-> process data in a backend application (Spring Boot)
+- process data in a backend application (Spring Boot)
 
-> Store data in a DataBase PostgreSQL/MySQL
+- Store data in a DataBase PostgreSQL/MySQL
 
-> Visualize data in real time using a frontend (Angular)
+- Visualize data in real time using a frontend (Angular)
 
-> Send commands back to the drone — potentially even predefined flight trajectory control (Future plan).
+- Send commands back to the drone — potentially even predefined flight trajectory control (Future plan).
 
 ---
 
@@ -31,55 +31,55 @@ This project aims to build a complete hardware & software system to:
 
 1. Drone Module (Hardware)
 
-    ESP32
+- ESP32
 
-    Sensors / Captors (acceleration, altitude, telemetry, etc.)
+- Sensors / Captors (acceleration, altitude, telemetry, etc.)
 
-    nRF24L01 module for LoRa-like communication
+- nRF24L01 module for LoRa-like communication
 
-    Powered by the drone's supply
+- Powered by the drone's supply
 
-    Sends sensor data → via SPI → nRF24L01 → Wireless → Fixed Module
+- Sends sensor data → via SPI → nRF24L01 → Wireless → Fixed Module
 
 2. Fixed Ground Module (Hardware)
 
-    ESP32
+- ESP32
 
-    nRF24L01 wireless module (for now, waiting for Lora module to arrive)
+- nRF24L01 wireless module (for now, waiting for Lora module to arrive)
 
-    Wi-Fi internet connection (via router / provider)
+- Wi-Fi internet connection (via router / provider)
 
-    Forwards raw telemetry to VPS via HTTP/MQTT/Websockets
+- Forwards raw telemetry to VPS via HTTP/MQTT/Websockets
 
 3. VPS / Server (Networking)
 
-    Receives telemetry from the fixed module
+- Receives telemetry from the fixed module
 
-    Communicates with Spring Boot backend
+- Communicates with Spring Boot backend
 
 4. Backend (Software – Spring Boot)
 
-    Exposes REST API
+- Exposes REST API
 
-    Stores data in database
+- Stores data in database
 
-    Provides endpoints for:
+- Provides endpoints for:
 
-        Submitting telemetry
+    Submitting telemetry
 
-        Querying drone history
+    Querying drone history
 
-        Sending commands back to modules
+    Sending commands back to modules
 
 5. Frontend (Software – Angular)
 
-    Dashboard UI
+- Dashboard UI
 
-    Displays live telemetry
+- Displays live telemetry
 
-    Graphs & charts
+- Graphs & charts
 
-    Interface for sending commands (future control system)
+- Interface for sending commands (future control system)
 
 ---
 
@@ -124,79 +124,79 @@ ESP32 firmware base setup
 
 3. VPS
 
-> Create VPS environment
+- Create VPS environment
 
-> Reverse proxy (Nginx / Traefik)
+- Reverse proxy (Nginx / Traefik)
 
-> HTTPS setup (Let's Encrypt)
+- HTTPS setup (Let's Encrypt)
 
-> Expose endpoint to receive module data
+- Expose endpoint to receive module data
 
     Security rules & firewall
 
 ### BACKEND TASKS (SPRING BOOT)
 
-> Initial project scaffold
+- Initial project scaffold
 
-> Telemetry ingestion API (POST /telemetry)
+- Telemetry ingestion API (POST /telemetry)
 
-> Database design (PostgreSQL)
+- Database design (PostgreSQL)
 
-> Drone history queries
+- Drone history queries
 
-> Authentication (API keys or JWT)
+- Authentication (API keys or JWT)
 
-> Websocket for real-time updates
+- Websocket for real-time updates
 
     Command endpoint (future control system)
 
 ### FRONTEND TASKS (ANGULAR)
 
-> Angular project setup
+- Angular project setup
 
-> Real-time telemetry dashboard
+- Real-time telemetry dashboard
 
-> Graphs (charts)
+- Graphs (charts)
 
-> Map view (future GPS)
+- Map view (future GPS)
 
-> Device management UI
+- Device management UI
 
     Commands panel (future control)
 
 ### TESTING TASKS
 
-> Unit tests for ESP32 modules
+- Unit tests for ESP32 modules
 
-> Backend unit tests
+- Backend unit tests
 
-> Integration tests (backend + frontend)
+- Integration tests (backend + frontend)
 
-> End-to-end test environment
+- End-to-end test environment
 
     Field tests with real hardware
 
 ---
 📁 Proposed Repository Structure
 
-/project-root
-├── firmware/
-│   ├── drone-module/
-│   ├── fixed-module/
-│   └── shared/
-│
-├── backend/
-│   ├── src/
-│   └── README.md
-│
-├── frontend/
-│   └── src/
-│
-├── docs/
-│   ├── architecture/
-│   └── communication-protocol.md
-│
-└── README.md
+/project-root<\br>
+├── firmware/<\br>
+│   ├── drone-module/<\br>
+│   ├── fixed-module/<\br>
+│   └── shared/<\br>
+│<\br>
+├── backend/<\br>
+│   ├── src/<\br>
+│   └── README.md<\br>
+│<\br>
+├── frontend/<\br>
+│   └── src/<\br>
+│<\br>
+├── docs/<\br>
+│   ├── architecture/<\br>
+│   └── communication-protocol.md<\br>
+│<\br>
+└── README.md<\br>
 
 ---
 ## Contribution Workflow
@@ -206,6 +206,7 @@ How to contribute, Every team member must follow:
 1. Fork the repository
 
 Each developer works on their own copy.
+
 2. Create a new branch for the task
 
 `git checkout -b feature/task-name`
@@ -213,6 +214,7 @@ Each developer works on their own copy.
 3. Implement the task
 
 Follow coding guidelines in the /docs folder.
+
 4. Push and create a Pull Request
 
 PR must include:
@@ -223,7 +225,11 @@ PR must include:
 5. Code review
 
 At least one approval before merging.
-📑 Coding Standards
+
+---
+
+## Coding Standards
+
 Firmware (ESP32)
 
     Use PlatformIO or ESP-IDF
