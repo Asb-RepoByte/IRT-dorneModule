@@ -31,55 +31,55 @@ This project aims to build a complete hardware & software system to:
 
 1. Drone Module (Hardware)
 
-- ESP32
+ - ESP32
 
-- Sensors / Captors (acceleration, altitude, telemetry, etc.)
+ - Sensors / Captors (acceleration, altitude, telemetry, etc.)
 
-- nRF24L01 module for LoRa-like communication
+ - nRF24L01 module for LoRa-like communication
 
-- Powered by the drone's supply
+ - Powered by the drone's supply
 
-- Sends sensor data → via SPI → nRF24L01 → Wireless → Fixed Module
+ - Sends sensor data → via SPI → nRF24L01 → Wireless → Fixed Module
 
 2. Fixed Ground Module (Hardware)
 
-- ESP32
+ - ESP32
 
-- nRF24L01 wireless module (for now, waiting for Lora module to arrive)
+ - nRF24L01 wireless module (for now, waiting for Lora module to arrive)
 
-- Wi-Fi internet connection (via router / provider)
+ - Wi-Fi internet connection (via router / provider)
 
-- Forwards raw telemetry to VPS via HTTP/MQTT/Websockets
+ - Forwards raw telemetry to VPS via HTTP/MQTT/Websockets
 
 3. VPS / Server (Networking)
 
-- Receives telemetry from the fixed module
+ - Receives telemetry from the fixed module
 
-- Communicates with Spring Boot backend
+ - Communicates with Spring Boot backend
 
 4. Backend (Software – Spring Boot)
 
-- Exposes REST API
+ - Exposes REST API
 
-- Stores data in database
+ - Stores data in database
 
-- Provides endpoints for:
+ - Provides endpoints for:
 
-    Submitting telemetry
+  - Submitting telemetry
 
-    Querying drone history
+  - Querying drone history
 
-    Sending commands back to modules
+  - Sending commands back to modules
 
 5. Frontend (Software – Angular)
 
-- Dashboard UI
+ - Dashboard UI
 
-- Displays live telemetry
+ - Displays live telemetry
 
-- Graphs & charts
+ - Graphs & charts
 
-- Interface for sending commands (future control system)
+ - Interface for sending commands (future control system)
 
 ---
 
@@ -89,50 +89,50 @@ This project aims to build a complete hardware & software system to:
 
 1. Drone Module (ESP32)
 
-ESP32 firmware base setup
+ ESP32 firmware base setup
 
-- SPI communication with nRF24L01
+ - SPI communication with nRF24L01
 
-- SPI communication with LoRA
+ - SPI communication with LoRA
 
-- Implement LoRa packet structure
+ - Implement LoRa packet structure
 
-- Creating an API to enable communication with LoRA/nRF24L01 interchangibaly
+ - Creating an API to enable communication with LoRA/nRF24L01 interchangibaly
 
-- Integrate sensor drivers (IMU, GPS future, etc.)
+ - Integrate sensor drivers (IMU, GPS future, etc.)
 
-- Power optimization & sleep modes
+ - Power optimization & sleep modes
 
-- Error handling, reconnection logic
+ - Error handling, reconnection logic
 
 2. Fixed Module (ESP32 + WiFi)
 
-- ESP32 firmware base setup
+ - ESP32 firmware base setup
 
-- Wireless LoRa receiver logic
+ - Wireless LoRa receiver logic
 
-- WiFi connection manager
+ - WiFi connection manager
 
-- Data forwarder: send packets to VPS
+ - Data forwarder: send packets to VPS
 
-- Local buffering when no internet
+ - Local buffering when no internet
 
-    Future: Receive commands from backend → LoRa → drone
+  - Future: Receive commands from backend → LoRa → drone
 
 
 ### NETWORKING TASKS
 
 3. VPS
 
-- Create VPS environment
+ - Create VPS environment
 
-- Reverse proxy (Nginx / Traefik)
+ - Reverse proxy (Nginx / Traefik)
 
-- HTTPS setup (Let's Encrypt)
+ - HTTPS setup (Let's Encrypt)
 
-- Expose endpoint to receive module data
+ - Expose endpoint to receive module data
 
-    Security rules & firewall
+  - Security rules & firewall
 
 ### BACKEND TASKS (SPRING BOOT)
 
