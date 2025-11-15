@@ -1,5 +1,7 @@
 IRT Drone Telemetry & Control System (IRT-DTC)
 
+![IRT(IoT) Drone Module](docs/images/IRT(IoT)Drone_Module.png)
+
 A modular platform for collecting drone data, transmitting it over LoRa, forwarding online, and visualizing it.
 This system combines embedded development, wireless communication, networking, and full-stack software.
 
