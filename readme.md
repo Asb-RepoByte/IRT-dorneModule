@@ -27,7 +27,7 @@ This project aims to build a complete hardware & software system to:
 
 ## Architecture Overview
 
-![Architecture Diagram]("./docs/images/drone-mvp-schema02")
+![Architecture Diagram](docs/images/drone-mvp-schema02.png)
 
 1. Drone Module (Hardware)
 
