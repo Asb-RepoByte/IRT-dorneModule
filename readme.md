@@ -31,15 +31,15 @@ This project aims to build a complete hardware & software system to:
 
 1. Drone Module (Hardware)
 
- - ESP32
+    - ESP32
 
- - Sensors / Captors (acceleration, altitude, telemetry, etc.)
+    - Sensors / Captors (acceleration, altitude, telemetry, etc.)
 
- - nRF24L01 module for LoRa-like communication
+    - nRF24L01 module for LoRa-like communication
 
- - Powered by the drone's supply
+    - Powered by the drone's supply
 
- - Sends sensor data → via SPI → nRF24L01 → Wireless → Fixed Module
+    - Sends sensor data → via SPI → nRF24L01 → Wireless → Fixed Module
 
 2. Fixed Ground Module (Hardware)
 
