@@ -99,7 +99,7 @@ This project aims to build a complete hardware & software system to:
 
     - Implement LoRa packet structure
 
-    - Creating an API to enable communication with LoRA/nRF24L01 interchangibaly
+    - Creating an API to enable communication with LoRA/nRF24L01 interchangeably
 
     - Integrate sensor drivers (IMU, GPS future, etc.)
 
@@ -219,15 +219,20 @@ This project aims to build a complete hardware & software system to:
 ---
 ## How to Contribute
 
-Every team member must follow:
+Team member can choose to work on the same Issue together or separately, in the case of the later the PR will be review by me and the adjoint and appropriate one will be chosen
+Every team member will get an invitation and must follow:
 
-1. Fork the repository
 
-    Each developer works on their own copy.
+1. assign himself to an Issue and clone the repository
 
-2. Create a new branch for the task
+    ```bash
+        git clone https://github.com/Asb-RepoByte/IRT-dorneModule.git
+        git pull
+    ```
 
-    `git checkout -b feature/task-name`
+2. Create a new branch for the task/Issue
+
+    `git checkout -b feature/task-name-matricule`
 
 3. Implement the task
 
@@ -247,6 +252,14 @@ Every team member must follow:
 ---
 
 ## Coding Standards
+
+>[!NOTE]
+> This is a sensative topic and i tried my best to handle it carefully, that being said I had a decision to make.
+> First of all, what tools and framework should I choose for the team to work with on programming ESP32, I had two options one of them was Arduino IDE
+> most of team/class has a background with Arduino IDE it's reletivaly easy to use, but when it comes to making a sophisticated project I don't think it's 
+> the best option because there is no easy way for us to handle dependencies and versioning.
+> So I chose PlatformIO it's a vscode extension that enables you target multiple boards including ESP32, and choosing multiple paltform including Arduino,
+> So apart from the initial setup everything else should be the same with programming Arduino, and it has an easy way for that to change later if we need it.
 
 - Firmware (ESP32)
 
