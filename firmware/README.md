@@ -43,3 +43,5 @@ if (role) { // meaning the module is a ground module
 
 ## Schematics
 ![ground-module Schematic](../docs/images/ground_module.svg)
+![drone-module Schematic](../docs/images/drone_module.svg)
+
