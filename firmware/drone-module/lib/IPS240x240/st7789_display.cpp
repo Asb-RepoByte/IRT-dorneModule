@@ -2,14 +2,13 @@
 #include "st7789_display.h"
 #include "tft_setup.h"
 #include <TFT_eSPI.h>
+#include "bmp280.h"
 
 void st7789Task(void *parameter) {
-
     TFT_eSPI tft = TFT_eSPI();
 
-    const int cw = tft.width() / 2;
-    const int ch = tft.height() / 2;
-    const int s = min(cw / 4, ch / 4);
+    const int cw = tft.width();
+    const int ch = tft.height();
 
     tft.init();
     tft.fillScreen(TFT_BLACK);
@@ -18,14 +17,28 @@ void st7789Task(void *parameter) {
     tft.setTextFont(1);
     tft.setTextSize(2);
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
-    tft.setTextDatum(CC_DATUM);
-    tft.drawString("Makerguides", ch, cw + s);
 
-    tft.fillCircle(ch, cw / 2 + s / 2, s / 2, TFT_RED);
-    tft.fillRect(1.5 * ch - s, cw / 2, s, s, TFT_GREEN);
-    tft.fillTriangle(ch / 2, cw / 2, ch / 2 + s, cw / 2, ch / 2, cw / 2 + s, TFT_BLUE);
 
+    uint8_t offsetX = 20;
+    uint8_t offsetY = 20;
+    BmpData BmpData;
     for (;;) {
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        bmpStore.read(BmpData);
+        int16_t temp_width = tft.drawString("Temperature: ", offsetX, offsetY);
+        tft.drawFloat(BmpData.temperature, 2, offsetX + temp_width - 10, offsetY);
+        offsetY += 50;
+
+        temp_width = tft.drawString("Pressure: ", offsetX, offsetY);
+        tft.drawFloat(BmpData.pressure, 2, offsetX + temp_width - 10, offsetY);
+        offsetY += 50;
+
+        temp_width = tft.drawString("altitude: ", offsetX, offsetY);
+        tft.drawFloat(BmpData.altitude, 2, offsetX + temp_width - 10, offsetY);
+
+        temp_width = 0;
+        offsetX = 20;
+        offsetY = 20;
+
+        vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }

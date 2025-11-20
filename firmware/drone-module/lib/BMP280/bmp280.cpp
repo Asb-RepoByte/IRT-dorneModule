@@ -1,8 +1,10 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_BMP280.h>
+#include "threadSafeSensor.h"
 #include "bmp280.h"
 
+ThreadSafeSensor<BmpData> bmpStore;
 
 void bmp280Task(void *parameter) {
     Adafruit_BMP280 bmp; // I2C
@@ -25,21 +27,33 @@ void bmp280Task(void *parameter) {
                     Adafruit_BMP280::FILTER_X16,      /* Filtering. */
                     Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
 
+    BmpData bmpData;
+    float temp, pressure, altitude;
     for (;;)
     {
         Serial.print(F("Temperature = "));
-        Serial.print(bmp.readTemperature());
+        temp = bmp.readTemperature();
+        Serial.print(temp);
         Serial.println(" *C");
 
         Serial.print(F("Pressure = "));
-        Serial.print(bmp.readPressure());
+        pressure = bmp.readPressure();
+        Serial.print(pressure);
         Serial.println(" Pa");
 
         Serial.print(F("Approx altitude = "));
-        Serial.print(bmp.readAltitude(1013.25)); /* Adjusted to local forecast! */
+        altitude = bmp.readAltitude(1013.25);
+        Serial.print(altitude); /* Adjusted to local forecast! */
         Serial.println(" m");
 
         Serial.println();
+
+        bmpData.temperature = temp;
+        bmpData.pressure =  pressure;
+        bmpData.altitude = altitude;
+
+        bmpStore.write(bmpData);
+
         vTaskDelay(2000 / portTICK_PERIOD_MS);
     }
 }

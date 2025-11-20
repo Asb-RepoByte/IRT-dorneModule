@@ -3,6 +3,7 @@
 #define TFT_WIDTH  240
 #define TFT_HEIGHT 240
 
+
 //#define TFT_RGB_ORDER TFT_RGB  // Colour order Red-Green-Blue
 //#define TFT_RGB_ORDER TFT_BGR  // Colour order Blue-Green-Red
 
@@ -22,6 +23,9 @@
 #define TFT_CS    -1 // Not connected
 #define TFT_DC    26
 #define TFT_RST   27  // Connect reset to ensure display initialises
+
+#define TFT_SPI_PORT VSPI
+
 
 // For NodeMCU - use pin numbers in the form PIN_Dx where Dx is the NodeMCU pin designation
 //#define TFT_CS   -1      // Define as not used
@@ -43,7 +47,7 @@
 
 
 // #define SPI_FREQUENCY  27000000
-#define SPI_FREQUENCY  40000000
+#define SPI_FREQUENCY  10000000
 
 #define SPI_READ_FREQUENCY  20000000
 
