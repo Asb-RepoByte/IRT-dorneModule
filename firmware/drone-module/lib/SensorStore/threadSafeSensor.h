@@ -30,6 +30,12 @@ struct ThreadSafeSensor {
         return true;
     }
 
+    void get(T &out) {
+        xSemaphoreTake(mutex, portMAX_DELAY);
+        out = value;
+        xSemaphoreGive(mutex);
+    }
+
 private:
     T value;
     bool updated = false;

@@ -36,6 +36,7 @@ void droneCnxTask(void *parameter) {
     radio.setPALevel(RF24_PA_LOW); // RF24_PA_MAX is default.
     radio.stopListening(); // put radio in TX mode
     radio.openReadingPipe(1, address[!role]); // using pipe 1
+    radio.openWritingPipe(address[role]); // using pipe 1
 
     BmpData bmpData;
     Packet packet;
@@ -53,8 +54,7 @@ void droneCnxTask(void *parameter) {
             {
                 Serial.print(F("Transmission successful! ")); // payload was delivered
                 Serial.print(F("Time to transmit = "));
-                Serial.print(end_timer - start_timer); // print the timer result
-                Serial.print(F(" us. Sent: bmpData"));
+                Serial.println(end_timer - start_timer); // print the timer result
             }
             else
             {

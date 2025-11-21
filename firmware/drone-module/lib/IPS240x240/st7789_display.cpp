@@ -23,7 +23,7 @@ void st7789Task(void *parameter) {
     uint8_t offsetY = 20;
     BmpData BmpData;
     for (;;) {
-        bmpStore.read(BmpData);
+        bmpStore.get(BmpData);
         int16_t temp_width = tft.drawString("Temperature: ", offsetX, offsetY);
         tft.drawFloat(BmpData.temperature, 2, offsetX + temp_width - 10, offsetY);
         offsetY += 50;
